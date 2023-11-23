@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DAM_M13_PROYECTO</string>
+    <string name="navigation_drawer_open">hola1</string>
+    <string name="navigation_drawer_close">hola2</string>
 </resources>

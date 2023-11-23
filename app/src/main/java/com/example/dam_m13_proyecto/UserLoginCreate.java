@@ -172,9 +172,9 @@ public class UserLoginCreate extends AppCompatActivity implements View.OnClickLi
                 while (resultSet.next()) {
 
                     // Obtén los datos del resultado
-                    String dataNombre = resultSet.getString("nombre");
-                    String dataApellidos = resultSet.getString("apellidos");
-                    String dataDepartamento = resultSet.getString("departamento");
+                    String dataNombre = resultSet.getString("id_user");
+                    String dataApellidos = resultSet.getString("password");
+                    String dataDepartamento = resultSet.getString("user_type");
 
                     result += dataNombre + ",";
                     result += dataApellidos + ",";
