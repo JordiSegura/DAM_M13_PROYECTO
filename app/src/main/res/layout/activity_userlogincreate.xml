@@ -38,14 +38,16 @@
 
     <Spinner
         android:id="@+id/spinnerUserType"
-        android:layout_width="78dp"
-        android:layout_height="37dp"
+        android:layout_width="245dp"
+        android:layout_height="187dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.531"
+        app:layout_constraintHorizontal_bias="0.528"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.012" />
+        app:layout_constraintVertical_bias="0.135"
+        android:singleLine="true"
+        android:textSize="12sp"/>
 
     <Button
         android:id="@+id/buttonLogin"

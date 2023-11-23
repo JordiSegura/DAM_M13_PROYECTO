@@ -17,9 +17,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Arrays;
 
-public class UserLoginCreate extends AppCompatActivity implements View.OnClickListener{
+public class UserLoginCreate extends AppCompatActivity implements View.OnClickListener {
     private TextView textViewNombreLogin;
     private TextView textViewPassLogin;
     private Spinner spinnerUserType;
@@ -44,27 +43,24 @@ public class UserLoginCreate extends AppCompatActivity implements View.OnClickLi
         new GetDataForSpinner().execute();
 
 
+        spinnerUserType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                // Get the selected item
+                selectedValue = (String) spinnerUserType.getItemAtPosition(pos);
 
+                // You can do something with the selected value here
+                Toast.makeText(UserLoginCreate.this, "Selected: " + selectedValue, Toast.LENGTH_SHORT).show();
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
-
-spinnerUserType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-        // Get the selected item
-        selectedValue = (String) spinnerUserType.getItemAtPosition(pos);
-
-        // You can do something with the selected value here
-        Toast.makeText(UserLoginCreate.this, "Selected: " + selectedValue, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
-});
+            }
+        });
 
     }
+
     @Override
     public void onClick(View view) {
         new GetDataFromDatabase().execute();
@@ -75,6 +71,7 @@ spinnerUserType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener
     public void onPointerCaptureChanged(boolean hasCapture) {
         super.onPointerCaptureChanged(hasCapture);
     }
+
     private class GetDataForSpinner extends AsyncTask<Void, Void, String> {
 
         @Override
@@ -88,10 +85,7 @@ spinnerUserType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener
                 Class.forName("com.mysql.jdbc.Driver");
 
                 // Establece la conexión con tu base de datos en PhpMyAdmin
-                Connection connection = (Connection) DriverManager.getConnection(
-                        "jdbc:mysql://10.0.2.2/empresa",
-                        "androidDBUser",
-                        "0310");
+                Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://10.0.2.2/empresa", "androidDBUser", "0310");
 
 
                 // Crea una declaración SQL y ejecuta la consulta
@@ -151,8 +145,10 @@ spinnerUserType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener
             // Apply the adapter to the spinner
             spinnerUserType.setAdapter(adapter);
 
+
         }
     }
+
     private class GetDataFromDatabase extends AsyncTask<Void, Void, String> {
 
         @Override
@@ -160,27 +156,16 @@ spinnerUserType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener
             String result = "";
 
             try {
-
-
                 // Carga el controlador JDBC para MySQL
                 Class.forName("com.mysql.jdbc.Driver");
 
                 // Establece la conexión con tu base de datos en PhpMyAdmin
-                Connection connection = (Connection) DriverManager.getConnection(
-                        "jdbc:mysql://10.0.2.2/empresa",
-                        "androidDBUser",
-                        "0310");
+                Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://10.0.2.2/empresa", "androidDBUser", "0310");
 
 
                 // Crea una declaración SQL y ejecuta la consulta
                 Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery("SELECT * FROM empleados where " +
-                        "id_user ='" + textViewNombreLogin.getText() + "' and " +
-                        "password ='" + textViewPassLogin.getText() + "'and " +
-                        "user_type ='" + selectedValue + "'" +
-                        "");
-                    System.out.println("EEEEEEEEEEEEEEEEEE " + selectedValue);
-
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM empleados where " + "id_user ='" + textViewNombreLogin.getText() + "' and " + "password ='" + textViewPassLogin.getText() + "'and " + "user_type ='" + selectedValue + "'" + "");
 
 
                 // Procesa los resultados
@@ -213,23 +198,20 @@ spinnerUserType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener
 
         @Override
         protected void onPostExecute(String result) {
-            // Actualiza la interfaz de usuario con los datos recuperados de la base de datos
-            // Split the string using the delimiter (comma in this case)
+
             String[] values = result.split(",");
 
-
-
-// Set the values in the respective EditText widgets
-            if (values.length >= 3) {
-                Toast.makeText(getApplicationContext(),"Results found",Toast.LENGTH_SHORT).show();
-
-                textViewNombreLogin.setText("Nombre: " +values[0]); // Set the first value in editText1
-                textViewPassLogin.setText("Apellido: "  + values[1]); // Set the second value in editText2
-                //textViewDeparamentoResultado.setText("Departamento: " +  values[2]); // Set the third value in editText3
+            if (values.length > 0) {
+               if (values[2].equals("carrier")) {
+                   Intent intent = new Intent(UserLoginCreate.this, WelcomePageCarrier.class);
+                   startActivity(intent);
+               } else if (values[2].equals("shipper")) {
+                    Intent intent = new Intent(UserLoginCreate.this, WelcomePageCarrier.class);
+                    startActivity(intent);
+                }
             } else {
-                Toast.makeText(getApplicationContext(),"No results found. Going back to main page",Toast.LENGTH_SHORT).show();
-                //Intent intent = new Intent(UserLoginCreate.this, MainActivity.class);
-               // startActivity(intent);
+                Toast.makeText(getApplicationContext(), "User account not found", Toast.LENGTH_SHORT).show();
+
             }
         }
     }
