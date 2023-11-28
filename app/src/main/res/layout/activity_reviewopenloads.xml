@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".WelcomePageCarrier"
+    tools:context=".CreateLoadCarrier"
     tools:openDrawer="start">
 
     <!-- Main content -->
@@ -15,7 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".WelcomePageCarrier"
         >
 
         <!-- Your main content goes here -->
