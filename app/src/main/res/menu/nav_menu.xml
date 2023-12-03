@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_item1"
-        android:title="Item 1" />
+        android:title="Manage company data" />
     <item
         android:id="@+id/nav_item2"
         android:title="Item 2" />
