@@ -1,8 +1,8 @@
 package com.example.dam_m13_proyecto;
 
+import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -13,16 +13,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
-import com.google.android.gms.location.LocationServices;
+
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -33,15 +29,15 @@ import java.sql.Statement;
 
 
 public class CreateLoadCarrier extends AppCompatActivity implements View.OnClickListener {
-    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1001;
 
     private Spinner spinnerLinearUom, spinnerWeightUom;
-    private EditText editTextOriginAddress, editTextDestinationAddress, editTextWeight, editTextHeight, editTextWidth;
+    private EditText editTextOriginAddress, editTextDestinationAddress, editTextWeight, editTextHeight, editTextWidth, editTextOriginCity, editTextOriginZip, editTextDestinationCity, editTextDestinationZip, editTextLatitude, editLongitude;
     private String selectedValueLinearUom, selectedValueWeightUom;
     private double  latitude, longitude;
     private String[] spinnerLinearUOMValues = {};
     private String[] spinnerWeightUOMValues = {};
     private Button buttonSubmit;
+    private String userId;
 
     private FusedLocationProviderClient fusedLocationProviderClient;
     private LocationRequest locationRequest;
@@ -51,6 +47,8 @@ public class CreateLoadCarrier extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createloadcarrier);
+        SharedPreferences preferences = getSharedPreferences("user_preferences", Context.MODE_PRIVATE);
+        userId = preferences.getString("user_id", "");
         spinnerLinearUom = findViewById(R.id.spinnerLinearUOM);
         spinnerWeightUom = findViewById(R.id.spinnerWeightUOM);
         buttonSubmit = findViewById(R.id.buttonSubmit);
@@ -61,41 +59,17 @@ public class CreateLoadCarrier extends AppCompatActivity implements View.OnClick
         editTextWeight = findViewById(R.id.editTextWeight);
         editTextHeight = findViewById(R.id.editTextHeight);
         editTextWidth = findViewById(R.id.editTextWidth);
+        editTextOriginCity = findViewById(R.id.editTextOriginCity);
+        editTextOriginZip = findViewById(R.id.editTextOriginZip);
+        editTextDestinationCity = findViewById(R.id.editTextDestinationCity);
+        editTextDestinationZip = findViewById(R.id.editTextDestinationZip);
+        editTextLatitude = findViewById(R.id.editTextLatitude);
+        editLongitude = findViewById(R.id.editLongitude);
 
         new GetDataForSpinnerLinearUom().execute();
         new GetDataForSpinnerWeightUom().execute();
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-        locationRequest = new LocationRequest();
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        locationRequest.setInterval(5000); // Update interval in milliseconds
 
-        locationCallback = new LocationCallback() {
-            @Override
-            public void onLocationResult(LocationResult locationResult) {
-                if (locationResult != null) {
-                    Location location = locationResult.getLastLocation();
-                    if (location != null) {
-                        // Use the 'location' object to get latitude, longitude, etc.
-                         latitude = location.getLatitude();
-                         longitude = location.getLongitude();
-                        Toast.makeText(CreateLoadCarrier.this, "Latitude: " + latitude + ", Longitude: " + longitude, Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        };
-
-        // Check for location permission
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            // Request location permission
-            ActivityCompat.requestPermissions(this,
-                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                    LOCATION_PERMISSION_REQUEST_CODE);
-        } else {
-            // Permission already granted
-            startLocationUpdates();
-        }
 
 
         spinnerWeightUom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -104,8 +78,6 @@ public class CreateLoadCarrier extends AppCompatActivity implements View.OnClick
                 // Get the selected item
                 selectedValueWeightUom = (String) spinnerWeightUom.getItemAtPosition(pos);
 
-                // You can do something with the selected value here
-                Toast.makeText(CreateLoadCarrier.this, "Selected: " + selectedValueWeightUom, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -119,8 +91,6 @@ public class CreateLoadCarrier extends AppCompatActivity implements View.OnClick
                 // Get the selected item
                 selectedValueLinearUom = (String) spinnerLinearUom.getItemAtPosition(pos);
 
-                // You can do something with the selected value here
-                Toast.makeText(CreateLoadCarrier.this, "Selected: " + selectedValueLinearUom, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -130,40 +100,7 @@ public class CreateLoadCarrier extends AppCompatActivity implements View.OnClick
         });
     }
 
-    private void startLocationUpdates() {
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null);
-    }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission granted, start location updates
-                startLocationUpdates();
-            } else {
-                // Permission denied, handle accordingly
-                Toast.makeText(this, "Location permission denied", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        // Stop location updates when the activity is destroyed
-        fusedLocationProviderClient.removeLocationUpdates(locationCallback);
-    }
 
     private class GetDataForSpinnerWeightUom extends AsyncTask<Void, Void, String> {
 
@@ -348,7 +285,12 @@ public class CreateLoadCarrier extends AppCompatActivity implements View.OnClick
                 String editTextWeightC = String.valueOf(editTextWeight.getText());
                 String editTextHeightC = String.valueOf(editTextHeight.getText());
                 String editTextWidthC = String.valueOf(editTextWidth.getText());
-
+                String editTextOriginCityC = String.valueOf(editTextOriginCity.getText());
+                String editTextOriginZipC = String.valueOf(editTextOriginZip.getText());
+                String editTextDestinationCityC = String.valueOf(editTextDestinationCity.getText());
+                String editTextDestinationZipC = String.valueOf(editTextDestinationZip.getText());
+                String latitudeC = String.valueOf(editTextLatitude.getText());
+                String longitudeC = String.valueOf(editLongitude.getText());
 
                 Class.forName("com.mysql.jdbc.Driver");
                 connection = (Connection) DriverManager.getConnection(
@@ -356,22 +298,31 @@ public class CreateLoadCarrier extends AppCompatActivity implements View.OnClick
                         "androidDBUser",
                         "0310");
 
-
-                    String insertQuery = "INSERT INTO new_loads ( origin_address, destination_address, status, weight, height, width, linear_uom, weight_uom, tariff_id, load_rate_cost, currency_uom) " +
-                            "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+                    String insertQuery = "INSERT INTO new_loads " +
+                            "( origin_address, origin_city,origin_zip_code, destination_address,destination_city,destination_zip_code, status, weight, height, width, " +
+                            "linear_uom, weight_uom, tariff_id, load_rate_cost, currency_uom, latitude, longitude, id_user) " +
+                            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
                     preparedStatement = connection.prepareStatement(insertQuery);
                     preparedStatement.setString(1, editTextOriginAddressC);
-                    preparedStatement.setString(2, editTextDestinationAddressC);
-                    preparedStatement.setString(3, "00");
-                    preparedStatement.setString(4, editTextWeightC);
-                    preparedStatement.setString(5, editTextHeightC);
-                    preparedStatement.setString(6, editTextWidthC);
-                    preparedStatement.setString(7, selectedValueLinearUom);
-                    preparedStatement.setString(8, selectedValueWeightUom);
-                    preparedStatement.setString(9, "00");
-                    preparedStatement.setString(10, "50");
-                    preparedStatement.setString(11, "Yen");
+                    preparedStatement.setString(2, editTextOriginCityC);
+                    preparedStatement.setString(3, editTextOriginZipC);
+                    preparedStatement.setString(4, editTextDestinationAddressC);
+                    preparedStatement.setString(5, editTextDestinationCityC);
+                    preparedStatement.setString(6, editTextDestinationZipC);
+                    preparedStatement.setString(7, "00");
+                    preparedStatement.setString(8, editTextWeightC);
+                    preparedStatement.setString(9, editTextHeightC);
+                    preparedStatement.setString(10, editTextWidthC);
+                    preparedStatement.setString(11, selectedValueLinearUom);
+                    preparedStatement.setString(12, selectedValueWeightUom);
+                    preparedStatement.setString(13, "00");
+                    preparedStatement.setString(14, "50");
+                    preparedStatement.setString(15, "Yen");
+                    preparedStatement.setString(16, latitudeC);
+                    preparedStatement.setString(17, longitudeC);
+                    preparedStatement.setString(18, userId);
+
 
                 preparedStatement.executeUpdate();
                     completadoOK = true;

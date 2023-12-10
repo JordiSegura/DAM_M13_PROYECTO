@@ -25,11 +25,58 @@
             android:layout_height="wrap_content"
             android:hint="Origin address"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/editTextOriginCity"
+                android:layout_width="179dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Origin City"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/editTextOriginZip"
+                android:layout_width="179dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Origin zip code"
+                android:inputType="text" />
+
+        </LinearLayout>
+
         <EditText
             android:id="@+id/editTextDestinationAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Destination address"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/editTextDestinationCity"
+                android:layout_width="179dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="City"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/editTextDestinationZip"
+                android:layout_width="179dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Zip code"
+                android:inputType="text" />
+
+        </LinearLayout>
 
 
     <LinearLayout
@@ -97,11 +144,33 @@
                 android:textSize="12sp"/>
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
+
+            <EditText
+                android:id="@+id/editTextLatitude"
+                android:layout_width="179dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Latitude"
+                android:inputType="numberDecimal|numberSigned" />
+
+            <EditText
+                android:id="@+id/editLongitude"
+                android:layout_width="179dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Longitude"
+                android:inputType="numberDecimal|numberSigned" />
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/buttonSubmit"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Submit"/>
 

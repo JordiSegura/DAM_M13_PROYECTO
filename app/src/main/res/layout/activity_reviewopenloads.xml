@@ -6,48 +6,176 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".CreateLoadCarrier"
+    tools:context=".ReviewOpenLoadsCarrier"
     tools:openDrawer="start">
 
-    <!-- Main content -->
-    <FrameLayout
-        android:id="@+id/container"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
         android:fitsSystemWindows="true"
         >
 
-        <!-- Your main content goes here -->
-        <!-- Button in the center -->
-        <Button
-            android:id="@+id/buttonCreateLoad"
+        <!-- Add EditText fields for each attribute in the NewLoad class -->
+        <EditText
+            android:id="@+id/editTextOriginAddress"
             android:layout_width="match_parent"
-            android:layout_height="239dp"
-            android:layout_gravity="top|start"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:text="Create load" />
+            android:layout_height="wrap_content"
+            android:hint="Origin address"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/editTextOriginCity"
+                android:layout_width="179dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Origin City"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/editTextOriginZip"
+                android:layout_width="179dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Origin zip code"
+                android:inputType="text" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/editTextDestinationAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Destination address"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/editTextDestinationCity"
+                android:layout_width="179dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="City"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/editTextDestinationZip"
+                android:layout_width="179dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Zip code"
+                android:inputType="text" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/editTextWeight"
+                android:layout_width="119dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:hint="Weight"/>
+
+            <EditText
+                android:id="@+id/editTextHeight"
+                android:layout_width="119dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Height"
+                android:inputType="numberDecimal" />
+
+            <EditText
+                android:id="@+id/editTextWidth"
+                android:layout_width="119dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Width"
+                android:inputType="numberDecimal" />
+
+        </LinearLayout>
+        <!-- Nested LinearLayout for Height and Width -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/spinnerLinearUOM"
+                android:layout_width="179dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.528"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.135"
+                android:singleLine="true"
+                android:textSize="3sp"
+                android:hint="Width"
+                />
+
+
+            <Spinner
+                android:id="@+id/spinnerWeightUOM"
+                android:layout_width="179dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.528"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.135"
+                android:singleLine="true"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/editTextLatitude"
+                android:layout_width="179dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Latitude"
+                android:inputType="numberDecimal|numberSigned" />
+
+            <EditText
+                android:id="@+id/editLongitude"
+                android:layout_width="179dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Longitude"
+                android:inputType="numberDecimal|numberSigned" />
+
+        </LinearLayout>
 
         <Button
-            android:id="@+id/buttonReviewRequests"
+            android:id="@+id/buttonSubmit"
             android:layout_width="match_parent"
-            android:layout_height="239dp"
-            android:layout_gravity="center"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="0dp"
-            android:text="Review carrier requests" />
+            android:layout_height="wrap_content"
+            android:text="Submit"/>
 
-        <Button
-            android:id="@+id/buttonOpenLoads"
-            android:layout_width="match_parent"
-            android:layout_height="239dp"
-            android:layout_gravity="bottom|end"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="0dp"
-            android:text="Review open loads" />
 
-    </FrameLayout>
-
+    </LinearLayout>
 
     <!-- Navigation Drawer -->
     <com.google.android.material.navigation.NavigationView

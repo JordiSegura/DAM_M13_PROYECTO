@@ -1,6 +1,8 @@
 package com.example.dam_m13_proyecto;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -203,9 +205,25 @@ public class UserLoginCreate extends AppCompatActivity implements View.OnClickLi
 
             if (values.length > 0) {
                if (values[2].equals("carrier")) {
+                   // In your LoginActivity or wherever you handle the login process
+
+                   SharedPreferences preferences = getSharedPreferences("user_preferences", Context.MODE_PRIVATE);
+                   SharedPreferences.Editor editor = preferences.edit();
+
+// Assuming userId is the variable where you store the user ID
+                   editor.putString("user_id", values[0]);
+                   editor.apply();
                    Intent intent = new Intent(UserLoginCreate.this, WelcomePageCarrier.class);
                    startActivity(intent);
                } else if (values[2].equals("shipper")) {
+                   // In your LoginActivity or wherever you handle the login process
+
+                   SharedPreferences preferences = getSharedPreferences("user_preferences", Context.MODE_PRIVATE);
+                   SharedPreferences.Editor editor = preferences.edit();
+
+// Assuming userId is the variable where you store the user ID
+                   editor.putString("user_id", values[0]);
+                   editor.apply();
                     Intent intent = new Intent(UserLoginCreate.this, WelcomePageCarrier.class);
                     startActivity(intent);
                 }
