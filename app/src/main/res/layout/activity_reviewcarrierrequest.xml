@@ -26,7 +26,9 @@
             android:layout_gravity="top|start"
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
-            android:text="Create load" />
+            android:text="Create load"
+            android:textColor="@android:color/white"
+            app:backgroundTint="@color/black"/>
 
         <Button
             android:id="@+id/buttonReviewRequests"
@@ -35,7 +37,9 @@
             android:layout_gravity="center"
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="0dp"
-            android:text="Review carrier requests" />
+            android:text="Review carrier requests"
+            android:textColor="@android:color/white"
+            app:backgroundTint="@color/black"/>
 
         <Button
             android:id="@+id/buttonOpenLoads"
@@ -44,7 +48,9 @@
             android:layout_gravity="bottom|end"
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="0dp"
-            android:text="Review open loads" />
+            android:text="Review open loads"
+            android:textColor="@android:color/white"
+            app:backgroundTint="@color/black"/>
 
     </FrameLayout>
 

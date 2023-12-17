@@ -20,11 +20,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class UserLoginCreate extends AppCompatActivity implements View.OnClickListener {
+public class UserLoginRegister extends AppCompatActivity implements View.OnClickListener {
     private TextView textViewNombreLogin;
     private TextView textViewPassLogin;
     private Spinner spinnerUserType;
-    private Button buttonLogin;
+    private Button buttonLogin, buttonRegister;
 
     private String selectedValue;
 
@@ -41,7 +41,8 @@ public class UserLoginCreate extends AppCompatActivity implements View.OnClickLi
         spinnerUserType = findViewById(R.id.spinnerUserType);
         buttonLogin = findViewById(R.id.buttonLogin);
         buttonLogin.setOnClickListener(this);
-
+        buttonRegister = findViewById(R.id.buttonRegister);
+        buttonRegister.setOnClickListener(this);
         new GetDataForSpinner().execute();
 
 
@@ -52,7 +53,7 @@ public class UserLoginCreate extends AppCompatActivity implements View.OnClickLi
                 selectedValue = (String) spinnerUserType.getItemAtPosition(pos);
 
                 // You can do something with the selected value here
-                Toast.makeText(UserLoginCreate.this, "Selected: " + selectedValue, Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserLoginRegister.this, "Selected: " + selectedValue, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -65,8 +66,16 @@ public class UserLoginCreate extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        new GetDataFromDatabase().execute();
 
+        int viewId = view.getId();
+
+        if (viewId == R.id.buttonLogin) {
+            new GetDataFromDatabase().execute();
+
+        } else if (viewId == R.id.buttonRegister) {
+            Intent intent = new Intent(UserLoginRegister.this, UserRegister.class);
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -139,7 +148,7 @@ public class UserLoginCreate extends AppCompatActivity implements View.OnClickLi
 
 
             // Create an ArrayAdapter using the string array and a default spinner layout
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(UserLoginCreate.this, android.R.layout.simple_spinner_item, spinnerValues);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(UserLoginRegister.this, android.R.layout.simple_spinner_item, spinnerValues);
 
             // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -213,7 +222,7 @@ public class UserLoginCreate extends AppCompatActivity implements View.OnClickLi
 // Assuming userId is the variable where you store the user ID
                    editor.putString("user_id", values[0]);
                    editor.apply();
-                   Intent intent = new Intent(UserLoginCreate.this, WelcomePageCarrier.class);
+                   Intent intent = new Intent(UserLoginRegister.this, WelcomePageCarrier.class);
                    startActivity(intent);
                } else if (values[2].equals("shipper")) {
                    // In your LoginActivity or wherever you handle the login process
@@ -224,7 +233,7 @@ public class UserLoginCreate extends AppCompatActivity implements View.OnClickLi
 // Assuming userId is the variable where you store the user ID
                    editor.putString("user_id", values[0]);
                    editor.apply();
-                    Intent intent = new Intent(UserLoginCreate.this, WelcomePageCarrier.class);
+                    Intent intent = new Intent(UserLoginRegister.this, WelcomePageCarrier.class);
                     startActivity(intent);
                 }
             } else {
