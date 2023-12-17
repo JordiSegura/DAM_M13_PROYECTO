@@ -1,6 +1,7 @@
 package com.example.dam_m13_proyecto;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -13,6 +14,11 @@ public class ReviewOpenLoadsCarrier extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reviewopenloads);
         SharedPreferences preferences = getSharedPreferences("user_preferences", Context.MODE_PRIVATE);
-        userId = preferences.getString("user_id", "");
+        // Retrieving the user ID, defaultValue can be an empty string or any default value you prefer
+        String userId = preferences.getString("user_id", "");
+        if (userId != null || userId != ""){
+            Intent intent = new Intent(ReviewOpenLoadsCarrier.this, UserLoginRegister.class);
+            startActivity(intent);
+        }
     }
 }

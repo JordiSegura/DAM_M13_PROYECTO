@@ -46,10 +46,12 @@ public class WelcomePageCarrier extends AppCompatActivity implements NavigationV
         buttonReviewOpenLoads = findViewById(R.id.buttonOpenLoads);
         buttonReviewOpenLoads.setOnClickListener(this);
         SharedPreferences preferences = getSharedPreferences("user_preferences", Context.MODE_PRIVATE);
-
-// Retrieving the user ID, defaultValue can be an empty string or any default value you prefer
+        // Retrieving the user ID, defaultValue can be an empty string or any default value you prefer
         String userId = preferences.getString("user_id", "");
-        System.out.println("userIDDDDDDDDDDD " + userId);
+       if (userId != null || userId != ""){
+           Intent intent = new Intent(WelcomePageCarrier.this, UserLoginRegister.class);
+           startActivity(intent);
+       }
     }
 
     @Override
@@ -89,4 +91,5 @@ public class WelcomePageCarrier extends AppCompatActivity implements NavigationV
             startActivity(intent);
         }
     }
+
 }

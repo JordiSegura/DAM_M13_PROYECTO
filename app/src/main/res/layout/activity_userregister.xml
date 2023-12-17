@@ -1,0 +1,136 @@
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".UserRegister"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:fitsSystemWindows="true"
+        >
+
+
+        <EditText
+            android:id="@+id/labelCompanyName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Company name :"
+            android:editable="false"/>
+
+        <EditText
+            android:id="@+id/editTextCompanyName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Company name"/>
+        <EditText
+            android:id="@+id/labelUserType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Type of company :"
+            android:editable="false"/>
+        <Spinner
+            android:id="@+id/spinnerUserType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.528"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.135"
+            android:singleLine="true"
+            android:textSize="3sp"
+            android:hint="Width"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/labelTextOriginCity"
+                android:layout_width="179dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:text="Headquarters location :"
+                android:textSize="15dp"
+                android:inputType="text"
+                android:editable="false"/>
+
+            <EditText
+                android:id="@+id/labelTextOriginZip"
+                android:layout_width="179dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:text="Headquarters zip code :"
+                android:textSize="15dp"
+                android:inputType="text"
+                android:editable="false"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/editTextOriginCity"
+                android:layout_width="179dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="City name"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/editTextOriginZip"
+                android:layout_width="179dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Zip code"
+                android:inputType="text" />
+
+        </LinearLayout>
+        <EditText
+            android:id="@+id/labelAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Headquarters' address :"
+            android:editable="false"/>
+        <EditText
+            android:id="@+id/editTextAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Street name, number, floor number"
+            />
+        <EditText
+            android:id="@+id/labelMail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mail contact address :"
+            android:editable="false"/>
+        <EditText
+            android:id="@+id/editTextMail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="myemail@providerName.com"
+            />
+
+
+        <Button
+            android:id="@+id/buttonSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:textColor="@android:color/white"
+            app:backgroundTint="@color/black" />
+
+
+    </LinearLayout>
+
+
+
+
