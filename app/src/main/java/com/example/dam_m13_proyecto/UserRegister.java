@@ -55,7 +55,7 @@ public class UserRegister extends AppCompatActivity implements View.OnClickListe
         //labelUserType.setEnabled(false);
 
         labelTextOriginCity = findViewById(R.id.labelTextOriginCity);
-        //labelTextOriginCity.setEnabled(false);
+        labelTextOriginCity.setTextIsSelectable(false);
 
         labelTextOriginZip = findViewById(R.id.labelTextOriginZip);
         //labelTextOriginZip.setEnabled(false);

@@ -57,7 +57,6 @@
                 android:ems="10"
                 android:text="Headquarters location :"
                 android:textSize="15dp"
-                android:inputType="text"
                 android:editable="false"/>
 
             <EditText
@@ -67,7 +66,6 @@
                 android:ems="10"
                 android:text="Headquarters zip code :"
                 android:textSize="15dp"
-                android:inputType="text"
                 android:editable="false"/>
 
         </LinearLayout>

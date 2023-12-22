@@ -16,9 +16,6 @@ public class ReviewOpenLoadsCarrier extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("user_preferences", Context.MODE_PRIVATE);
         // Retrieving the user ID, defaultValue can be an empty string or any default value you prefer
         String userId = preferences.getString("user_id", "");
-        if (userId != null || userId != ""){
-            Intent intent = new Intent(ReviewOpenLoadsCarrier.this, UserLoginRegister.class);
-            startActivity(intent);
-        }
+
     }
 }

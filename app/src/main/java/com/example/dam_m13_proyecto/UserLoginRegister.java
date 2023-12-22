@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -213,13 +214,16 @@ public class UserLoginRegister extends AppCompatActivity implements View.OnClick
             String[] values = result.split(",");
 
             if (values.length > 0) {
+                System.out.println("User  found");
+
+                Log.i("onPostExecute() user login attempt","User found");
                if (values[2].equals("carrier")) {
                    // In your LoginActivity or wherever you handle the login process
 
                    SharedPreferences preferences = getSharedPreferences("user_preferences", Context.MODE_PRIVATE);
                    SharedPreferences.Editor editor = preferences.edit();
 
-// Assuming userId is the variable where you store the user ID
+                    // Assuming userId is the variable where you store the user ID
                    editor.putString("user_id", values[0]);
                    editor.apply();
                    Intent intent = new Intent(UserLoginRegister.this, WelcomePageCarrier.class);
@@ -233,10 +237,12 @@ public class UserLoginRegister extends AppCompatActivity implements View.OnClick
 // Assuming userId is the variable where you store the user ID
                    editor.putString("user_id", values[0]);
                    editor.apply();
-                    Intent intent = new Intent(UserLoginRegister.this, WelcomePageCarrier.class);
+                    Intent intent = new Intent(UserLoginRegister.this, WelcomePageShipper.class);
                     startActivity(intent);
                 }
             } else {
+                System.out.println("User not found");
+                Log.i("onPostExecute() user login attempt","User not found");
                 Toast.makeText(getApplicationContext(), "User account not found", Toast.LENGTH_SHORT).show();
 
             }

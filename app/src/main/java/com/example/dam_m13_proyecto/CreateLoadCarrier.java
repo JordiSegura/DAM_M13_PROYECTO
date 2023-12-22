@@ -50,10 +50,7 @@ public class CreateLoadCarrier extends AppCompatActivity implements View.OnClick
         SharedPreferences preferences = getSharedPreferences("user_preferences", Context.MODE_PRIVATE);
         // Retrieving the user ID, defaultValue can be an empty string or any default value you prefer
         String userId = preferences.getString("user_id", "");
-        if (userId != null || userId != ""){
-            Intent intent = new Intent(CreateLoadCarrier.this, UserLoginRegister.class);
-            startActivity(intent);
-        }
+System.out.println("USUARIO activo: " + userId);
         spinnerLinearUom = findViewById(R.id.spinnerLinearUOM);
         spinnerWeightUom = findViewById(R.id.spinnerWeightUOM);
         buttonSubmit = findViewById(R.id.buttonSubmit);
@@ -296,6 +293,9 @@ public class CreateLoadCarrier extends AppCompatActivity implements View.OnClick
                 String editTextDestinationZipC = String.valueOf(editTextDestinationZip.getText());
                 String latitudeC = String.valueOf(editTextLatitude.getText());
                 String longitudeC = String.valueOf(editLongitude.getText());
+                SharedPreferences preferences = getSharedPreferences("user_preferences", Context.MODE_PRIVATE);
+                // Retrieving the user ID, defaultValue can be an empty string or any default value you prefer
+                String userId = preferences.getString("user_id", "");
 
                 Class.forName("com.mysql.jdbc.Driver");
                 connection = (Connection) DriverManager.getConnection(

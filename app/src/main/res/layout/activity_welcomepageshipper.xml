@@ -1,0 +1,68 @@
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".WelcomePageShipper"
+    >
+
+    <!-- Main content -->
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".WelcomePageCarrier"
+        >
+
+        <!-- Your main content goes here -->
+        <!-- Button in the center -->
+        <Button
+            android:id="@+id/buttonCreateLoad"
+            android:layout_width="match_parent"
+            android:layout_height="239dp"
+            android:layout_gravity="top|start"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:text="Create load"
+            android:textColor="@android:color/white"
+            app:backgroundTint="@color/black"/>
+
+        <Button
+            android:id="@+id/buttonReviewRequests"
+            android:layout_width="match_parent"
+            android:layout_height="239dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:text="Review carrier requests"
+            android:textColor="@android:color/white"
+            app:backgroundTint="@color/black"/>
+
+        <Button
+            android:id="@+id/buttonOpenLoads"
+            android:layout_width="match_parent"
+            android:layout_height="239dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:text="Review open loads"
+            android:textColor="@android:color/white"
+            app:backgroundTint="@color/black"/>
+
+    </FrameLayout>
+
+
+    <!-- Navigation Drawer -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/nav_menu" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

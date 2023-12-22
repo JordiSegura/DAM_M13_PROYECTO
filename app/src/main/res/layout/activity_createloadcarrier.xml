@@ -156,6 +156,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Latitude"
+                android:maxLength="14"
+                android:digits="0123456789.-"
                 android:inputType="numberDecimal|numberSigned" />
 
             <EditText
@@ -163,6 +165,8 @@
                 android:layout_width="179dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:maxLength="14"
+                android:digits="0123456789.-"
                 android:hint="Longitude"
                 android:inputType="numberDecimal|numberSigned" />
 

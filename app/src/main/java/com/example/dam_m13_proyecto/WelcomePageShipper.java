@@ -4,17 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.google.android.material.navigation.NavigationView;
 
-public class WelcomePageCarrier extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+public class WelcomePageShipper extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     private DrawerLayout drawer;
 
@@ -55,7 +56,7 @@ public class WelcomePageCarrier extends AppCompatActivity implements NavigationV
     public boolean onNavigationItemSelected(MenuItem item) {
         if (item.getTitle().equals("Manage company data")){
             // Handle your menu item clicks here
-            Intent intent = new Intent(WelcomePageCarrier.this, UpdateCarrierProfileData.class);
+            Intent intent = new Intent(WelcomePageShipper.this, UpdateCarrierProfileData.class);
             startActivity(intent);
             drawer.closeDrawer(GravityCompat.START);
             return true;
@@ -78,13 +79,13 @@ public class WelcomePageCarrier extends AppCompatActivity implements NavigationV
         int viewId = view.getId();
 
         if (viewId == R.id.buttonCreateLoad) {
-            Intent intent = new Intent(WelcomePageCarrier.this, CreateLoadCarrier.class);
+            Intent intent = new Intent(WelcomePageShipper.this, CreateLoadCarrier.class);
             startActivity(intent);
         } else if (viewId == R.id.buttonReviewRequests) {
-            Intent intent = new Intent(WelcomePageCarrier.this, ReviewCarrierRequests.class);
+            Intent intent = new Intent(WelcomePageShipper.this, ReviewCarrierRequests.class);
             startActivity(intent);
         } else if (viewId == R.id.buttonOpenLoads) {
-            Intent intent = new Intent(WelcomePageCarrier.this, ReviewOpenLoadsCarrier.class);
+            Intent intent = new Intent(WelcomePageShipper.this, ReviewOpenLoadsCarrier.class);
             startActivity(intent);
         }
     }
