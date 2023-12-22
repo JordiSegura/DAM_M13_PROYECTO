@@ -42,7 +42,13 @@ public class UpdateCarrierProfileData extends AppCompatActivity implements View.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_updatecarrierprofiledata);
         SharedPreferences preferences = getSharedPreferences("user_preferences", Context.MODE_PRIVATE);
-        userId = preferences.getString("user_id", "");
+        // Retrieving the user ID, defaultValue can be an empty string or any default value you prefer
+        String userId = preferences.getString("user_id", "");
+
+        if (userId != null || userId != ""){
+            Intent intent = new Intent(UpdateCarrierProfileData.this, UserLoginRegister.class);
+            startActivity(intent);
+        }
 
 
 
