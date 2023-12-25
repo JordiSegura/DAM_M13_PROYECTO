@@ -1,4 +1,4 @@
-package com.example.dam_m13_proyecto;
+package com.example.dam_m13_proyecto.session;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,12 +16,16 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.dam_m13_proyecto.R;
+import com.example.dam_m13_proyecto.carrier.WelcomePageCarrierActivity;
+import com.example.dam_m13_proyecto.shipper.WelcomePageShipperActivity;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class UserLoginRegister extends AppCompatActivity implements View.OnClickListener {
+public class SignInActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView textViewNombreLogin;
     private TextView textViewPassLogin;
     private Spinner spinnerUserType;
@@ -54,7 +58,7 @@ public class UserLoginRegister extends AppCompatActivity implements View.OnClick
                 selectedValue = (String) spinnerUserType.getItemAtPosition(pos);
 
                 // You can do something with the selected value here
-                Toast.makeText(UserLoginRegister.this, "Selected: " + selectedValue, Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignInActivity.this, "Selected: " + selectedValue, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -74,7 +78,7 @@ public class UserLoginRegister extends AppCompatActivity implements View.OnClick
             new GetDataFromDatabase().execute();
 
         } else if (viewId == R.id.buttonRegister) {
-            Intent intent = new Intent(UserLoginRegister.this, UserRegister.class);
+            Intent intent = new Intent(SignInActivity.this, RegisterActivity.class);
             startActivity(intent);
         }
     }
@@ -149,7 +153,7 @@ public class UserLoginRegister extends AppCompatActivity implements View.OnClick
 
 
             // Create an ArrayAdapter using the string array and a default spinner layout
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(UserLoginRegister.this, android.R.layout.simple_spinner_item, spinnerValues);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(SignInActivity.this, android.R.layout.simple_spinner_item, spinnerValues);
 
             // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -226,7 +230,7 @@ public class UserLoginRegister extends AppCompatActivity implements View.OnClick
                     // Assuming userId is the variable where you store the user ID
                    editor.putString("user_id", values[0]);
                    editor.apply();
-                   Intent intent = new Intent(UserLoginRegister.this, WelcomePageCarrier.class);
+                   Intent intent = new Intent(SignInActivity.this, WelcomePageCarrierActivity.class);
                    startActivity(intent);
                } else if (values[2].equals("shipper")) {
                    // In your LoginActivity or wherever you handle the login process
@@ -237,7 +241,7 @@ public class UserLoginRegister extends AppCompatActivity implements View.OnClick
 // Assuming userId is the variable where you store the user ID
                    editor.putString("user_id", values[0]);
                    editor.apply();
-                    Intent intent = new Intent(UserLoginRegister.this, WelcomePageShipper.class);
+                    Intent intent = new Intent(SignInActivity.this, WelcomePageShipperActivity.class);
                     startActivity(intent);
                 }
             } else {

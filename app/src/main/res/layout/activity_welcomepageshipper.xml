@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".WelcomePageShipper"
+    tools:context=".shipper.WelcomePageShipperActivity"
     >
 
     <!-- Main content -->
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".WelcomePageCarrier"
+        tools:context=".carrier.WelcomePageCarrierActivity"
         >
 
         <!-- Your main content goes here -->

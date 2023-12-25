@@ -1,4 +1,4 @@
-package com.example.dam_m13_proyecto;
+package com.example.dam_m13_proyecto.carrier;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.dam_m13_proyecto.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -28,7 +29,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-public class CreateLoadCarrier extends AppCompatActivity implements View.OnClickListener {
+public class CreateLoadCarrierActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Spinner spinnerLinearUom, spinnerWeightUom;
     private EditText editTextOriginAddress, editTextDestinationAddress, editTextWeight, editTextHeight, editTextWidth, editTextOriginCity, editTextOriginZip, editTextDestinationCity, editTextDestinationZip, editTextLatitude, editLongitude;
@@ -169,7 +170,7 @@ System.out.println("USUARIO activo: " + userId);
 
 
             // Create an ArrayAdapter using the string array and a default spinner layout
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(CreateLoadCarrier.this, android.R.layout.simple_spinner_item, spinnerWeightUOMValues);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(CreateLoadCarrierActivity.this, android.R.layout.simple_spinner_item, spinnerWeightUOMValues);
 
             // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -246,7 +247,7 @@ System.out.println("USUARIO activo: " + userId);
 
 
             // Create an ArrayAdapter using the string array and a default spinner layout
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(CreateLoadCarrier.this, android.R.layout.simple_spinner_item, spinnerLinearUOMValues);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(CreateLoadCarrierActivity.this, android.R.layout.simple_spinner_item, spinnerLinearUOMValues);
 
             // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -266,7 +267,7 @@ System.out.println("USUARIO activo: " + userId);
                 && null != editTextWidth.getText()) {
             new PostDataToDatabase().execute();
         } else {
-            Toast.makeText(CreateLoadCarrier.this, "Input data in all available fields", Toast.LENGTH_LONG).show();
+            Toast.makeText(CreateLoadCarrierActivity.this, "Input data in all available fields", Toast.LENGTH_LONG).show();
 
         }
 
@@ -354,13 +355,13 @@ System.out.println("USUARIO activo: " + userId);
             System.out.println("valor del boolean");
             System.out.println(completadoOK);
             if (completadoOK) {
-                Toast.makeText(CreateLoadCarrier.this, "Record has been inserted in database", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(CreateLoadCarrier.this, WelcomePageCarrier.class);
+                Toast.makeText(CreateLoadCarrierActivity.this, "Record has been inserted in database", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(CreateLoadCarrierActivity.this, WelcomePageCarrierActivity.class);
                 startActivity(intent);
 
 
             } else if (!completadoOK) {
-                Toast.makeText(CreateLoadCarrier.this, "Password or user is already in use", Toast.LENGTH_LONG).show();
+                Toast.makeText(CreateLoadCarrierActivity.this, "Password or user is already in use", Toast.LENGTH_LONG).show();
 
             }
 

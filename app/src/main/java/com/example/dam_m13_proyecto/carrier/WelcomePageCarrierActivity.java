@@ -1,4 +1,4 @@
-package com.example.dam_m13_proyecto;
+package com.example.dam_m13_proyecto.carrier;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,13 +12,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.dam_m13_proyecto.R;
+import com.example.dam_m13_proyecto.shipper.ReviewCarrierRequestsActivity;
+import com.example.dam_m13_proyecto.CRUD.UpdateCarrierProfileDataActivity;
 import com.google.android.material.navigation.NavigationView;
 
-public class WelcomePageCarrier extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+public class WelcomePageCarrierActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     private DrawerLayout drawer;
 
-    private Button buttonCreateLoad,buttonReviewCarrierRequests,buttonReviewOpenLoads;
+    private Button buttonCheckNewLoads,buttonReviewLoadRequests,buttonAcceptedLoads;
 
 
     @Override
@@ -37,14 +40,14 @@ public class WelcomePageCarrier extends AppCompatActivity implements NavigationV
         toggle.syncState();
 
         //Buttons
-        buttonCreateLoad = findViewById(R.id.buttonCreateLoad);
-        buttonCreateLoad.setOnClickListener(this);
+        buttonCheckNewLoads = findViewById(R.id.buttonCheckNewLoads);
+        buttonCheckNewLoads.setOnClickListener(this);
 
-        buttonReviewCarrierRequests = findViewById(R.id.buttonReviewRequests);
-        buttonReviewCarrierRequests.setOnClickListener(this);
+        buttonReviewLoadRequests = findViewById(R.id.buttonReviewLoadRequests);
+        buttonReviewLoadRequests.setOnClickListener(this);
 
-        buttonReviewOpenLoads = findViewById(R.id.buttonOpenLoads);
-        buttonReviewOpenLoads.setOnClickListener(this);
+        buttonAcceptedLoads = findViewById(R.id.buttonAcceptedLoads);
+        buttonAcceptedLoads.setOnClickListener(this);
         SharedPreferences preferences = getSharedPreferences("user_preferences", Context.MODE_PRIVATE);
         // Retrieving the user ID, defaultValue can be an empty string or any default value you prefer
         String userId = preferences.getString("user_id", null);
@@ -55,7 +58,7 @@ public class WelcomePageCarrier extends AppCompatActivity implements NavigationV
     public boolean onNavigationItemSelected(MenuItem item) {
         if (item.getTitle().equals("Manage company data")){
             // Handle your menu item clicks here
-            Intent intent = new Intent(WelcomePageCarrier.this, UpdateCarrierProfileData.class);
+            Intent intent = new Intent(WelcomePageCarrierActivity.this, UpdateCarrierProfileDataActivity.class);
             startActivity(intent);
             drawer.closeDrawer(GravityCompat.START);
             return true;
@@ -77,14 +80,14 @@ public class WelcomePageCarrier extends AppCompatActivity implements NavigationV
     public void onClick(View view) {
         int viewId = view.getId();
 
-        if (viewId == R.id.buttonCreateLoad) {
-            Intent intent = new Intent(WelcomePageCarrier.this, CreateLoadCarrier.class);
+        if (viewId == R.id.buttonCheckNewLoads) {
+            Intent intent = new Intent(WelcomePageCarrierActivity.this, ReviewOpenLoadsActivity.class);
             startActivity(intent);
-        } else if (viewId == R.id.buttonReviewRequests) {
-            Intent intent = new Intent(WelcomePageCarrier.this, ReviewCarrierRequests.class);
+        } else if (viewId == R.id.buttonReviewLoadRequests) {
+            Intent intent = new Intent(WelcomePageCarrierActivity.this, ReviewAcceptedRequestsActivity.class);
             startActivity(intent);
-        } else if (viewId == R.id.buttonOpenLoads) {
-            Intent intent = new Intent(WelcomePageCarrier.this, ReviewOpenLoadsCarrier.class);
+        } else if (viewId == R.id.buttonAcceptedLoads) {
+            Intent intent = new Intent(WelcomePageCarrierActivity.this, ReviewAcceptedLoadsActivity.class);
             startActivity(intent);
         }
     }

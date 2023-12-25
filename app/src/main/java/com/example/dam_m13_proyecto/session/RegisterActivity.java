@@ -1,10 +1,9 @@
-package com.example.dam_m13_proyecto;
+package com.example.dam_m13_proyecto.session;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -17,9 +16,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
+import com.example.dam_m13_proyecto.R;
+import com.example.dam_m13_proyecto.ShowAlertDialog;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -29,7 +27,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-public class UserRegister extends AppCompatActivity implements View.OnClickListener {
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Spinner spinnerUserType;
     private EditText labelCompanyName,labelUserType,labelTextOriginCity,labelTextOriginZip,labelAddress,labelMail;
@@ -82,7 +80,7 @@ public class UserRegister extends AppCompatActivity implements View.OnClickListe
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 // Get the selected item
                 selectedValue = (String) spinnerUserType.getItemAtPosition(pos);
-                Toast.makeText(UserRegister.this, "Selected: " + selectedValue, Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "Selected: " + selectedValue, Toast.LENGTH_SHORT).show();
 
             }
 
@@ -159,7 +157,7 @@ public class UserRegister extends AppCompatActivity implements View.OnClickListe
 
 
             // Create an ArrayAdapter using the string array and a default spinner layout
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(UserRegister.this, android.R.layout.simple_spinner_item, spinnerValues);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(RegisterActivity.this, android.R.layout.simple_spinner_item, spinnerValues);
 
             // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -180,7 +178,7 @@ public class UserRegister extends AppCompatActivity implements View.OnClickListe
             new PostDataToDatabase().execute();
 
         } else {
-            Toast.makeText(UserRegister.this, "Input data in all available fields", Toast.LENGTH_LONG).show();
+            Toast.makeText(RegisterActivity.this, "Input data in all available fields", Toast.LENGTH_LONG).show();
 
         }
 
@@ -252,12 +250,12 @@ public class UserRegister extends AppCompatActivity implements View.OnClickListe
                 ShowAlertDialog alertObj = new ShowAlertDialog();
 
 
-                alertObj.showAlertDialogOkOnly(UserRegister.this,"Request received", "Within the next hours you will receive a confirmation mail regarding your application." +
+                alertObj.showAlertDialogOkOnly(RegisterActivity.this,"Request received", "Within the next hours you will receive a confirmation mail regarding your application." +
                         "\n" + "Our team might get in contact in case further information is needed." +
                         "\n" +"If your application is successful you will receive your credentials in your inbox");
 
             } else if (!completadoOK) {
-                Toast.makeText(UserRegister.this, "Password or user is already in use", Toast.LENGTH_LONG).show();
+                Toast.makeText(RegisterActivity.this, "Password or user is already in use", Toast.LENGTH_LONG).show();
 
             }
 
@@ -272,7 +270,7 @@ public class UserRegister extends AppCompatActivity implements View.OnClickListe
                         // Positive button click
                         // Close the dialog
                         dialog.dismiss();
-                        Intent intent = new Intent(UserRegister.this, UserLoginRegister.class);
+                        Intent intent = new Intent(RegisterActivity.this, SignInActivity.class);
                 startActivity(intent);
 
                     }

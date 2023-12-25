@@ -1,9 +1,8 @@
-package com.example.dam_m13_proyecto;
+package com.example.dam_m13_proyecto.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.sax.Element;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +11,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.dam_m13_proyecto.R;
 
 import java.util.List;
 
@@ -59,7 +60,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             status = itemView.findViewById(R.id.statusTextView);
         }
         void bindData(final ListElement item){
-             System.out.println("COLORRRRRRRRR " + item.getColor());
             iconImage.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
             name.setText(item.getName());
             city.setText(item.getCity());

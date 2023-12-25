@@ -1,4 +1,4 @@
-package com.example.dam_m13_proyecto;
+package com.example.dam_m13_proyecto.CRUD;
 
 
 import android.content.Context;
@@ -6,18 +6,18 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GestureDetectorCompat;
 
 
+import com.example.dam_m13_proyecto.R;
+import com.example.dam_m13_proyecto.session.SignInActivity;
+import com.example.dam_m13_proyecto.carrier.WelcomePageCarrierActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;
 
 
@@ -29,7 +29,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-public class UpdateCarrierProfileData extends AppCompatActivity implements View.OnClickListener {
+public class UpdateCarrierProfileDataActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editTextNombre, editTextEmail, editTextUserId, editTextPassword, editTextUserType,editTextCompanyName;
     private Button buttonSubmit;
@@ -46,7 +46,7 @@ public class UpdateCarrierProfileData extends AppCompatActivity implements View.
         String userId = preferences.getString("user_id", "");
 
         if (userId != null || userId != ""){
-            Intent intent = new Intent(UpdateCarrierProfileData.this, UserLoginRegister.class);
+            Intent intent = new Intent(UpdateCarrierProfileDataActivity.this, SignInActivity.class);
             startActivity(intent);
         }
 
@@ -231,13 +231,13 @@ public class UpdateCarrierProfileData extends AppCompatActivity implements View.
             System.out.println("valor del boolean");
             System.out.println(completadoOK);
             if (completadoOK) {
-                Toast.makeText(UpdateCarrierProfileData.this, "Record has been inserted in database", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(UpdateCarrierProfileData.this, WelcomePageCarrier.class);
+                Toast.makeText(UpdateCarrierProfileDataActivity.this, "Record has been inserted in database", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(UpdateCarrierProfileDataActivity.this, WelcomePageCarrierActivity.class);
                 startActivity(intent);
 
 
             } else if (!completadoOK) {
-                Toast.makeText(UpdateCarrierProfileData.this, "Password or user is already in use", Toast.LENGTH_LONG).show();
+                Toast.makeText(UpdateCarrierProfileDataActivity.this, "Password or user is already in use", Toast.LENGTH_LONG).show();
 
             }
 

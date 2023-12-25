@@ -1,4 +1,4 @@
-package com.example.dam_m13_proyecto;
+package com.example.dam_m13_proyecto.shipper;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,9 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.dam_m13_proyecto.R;
+import com.example.dam_m13_proyecto.CRUD.UpdateCarrierProfileDataActivity;
+import com.example.dam_m13_proyecto.carrier.CreateLoadCarrierActivity;
+import com.example.dam_m13_proyecto.carrier.ReviewOpenLoadsActivity;
 import com.google.android.material.navigation.NavigationView;
 
-public class WelcomePageShipper extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+public class WelcomePageShipperActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     private DrawerLayout drawer;
 
@@ -56,7 +60,7 @@ public class WelcomePageShipper extends AppCompatActivity implements NavigationV
     public boolean onNavigationItemSelected(MenuItem item) {
         if (item.getTitle().equals("Manage company data")){
             // Handle your menu item clicks here
-            Intent intent = new Intent(WelcomePageShipper.this, UpdateCarrierProfileData.class);
+            Intent intent = new Intent(WelcomePageShipperActivity.this, UpdateCarrierProfileDataActivity.class);
             startActivity(intent);
             drawer.closeDrawer(GravityCompat.START);
             return true;
@@ -79,13 +83,13 @@ public class WelcomePageShipper extends AppCompatActivity implements NavigationV
         int viewId = view.getId();
 
         if (viewId == R.id.buttonCreateLoad) {
-            Intent intent = new Intent(WelcomePageShipper.this, CreateLoadCarrier.class);
+            Intent intent = new Intent(WelcomePageShipperActivity.this, CreateLoadCarrierActivity.class);
             startActivity(intent);
         } else if (viewId == R.id.buttonReviewRequests) {
-            Intent intent = new Intent(WelcomePageShipper.this, ReviewCarrierRequests.class);
+            Intent intent = new Intent(WelcomePageShipperActivity.this, ReviewCarrierRequestsActivity.class);
             startActivity(intent);
         } else if (viewId == R.id.buttonOpenLoads) {
-            Intent intent = new Intent(WelcomePageShipper.this, ReviewOpenLoadsCarrier.class);
+            Intent intent = new Intent(WelcomePageShipperActivity.this, ReviewOpenLoadsActivity.class);
             startActivity(intent);
         }
     }

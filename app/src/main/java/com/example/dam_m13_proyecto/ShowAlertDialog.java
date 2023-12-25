@@ -7,6 +7,8 @@ import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.dam_m13_proyecto.session.SignInActivity;
+
 public class ShowAlertDialog extends AppCompatActivity {
     private Context context;
     private String title, message;
@@ -55,7 +57,7 @@ public class ShowAlertDialog extends AppCompatActivity {
                         // Positive button click
                         // Close the dialog
                         dialog.dismiss();
-                        Intent intent = new Intent(ShowAlertDialog.this, UserLoginRegister.class);
+                        Intent intent = new Intent(ShowAlertDialog.this, SignInActivity.class);
                         startActivity(intent);
 
 

@@ -1,4 +1,4 @@
-package com.example.dam_m13_proyecto;
+package com.example.dam_m13_proyecto.adapter;
 
 public class ListElement {
     public String name,color,city,status;

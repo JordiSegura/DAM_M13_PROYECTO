@@ -22,7 +22,7 @@
             android:value=""
             />
         <activity
-            android:name=".UserLoginRegister"
+            android:name=".session.SignInActivity"
             android:exported="true">
 
 
@@ -33,7 +33,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".WelcomePageCarrier"
+            android:name=".carrier.WelcomePageCarrierActivity"
             android:exported="true">
 
 
@@ -44,7 +44,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".WelcomePageShipper"
+            android:name=".shipper.WelcomePageShipperActivity"
             android:exported="true">
 
 
@@ -55,7 +55,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".WelcomePageShipper2"
+            android:name=".shipper.WelcomePageShipper2Activity"
             android:exported="true">
 
 
@@ -66,7 +66,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CreateLoadCarrier"
+            android:name=".carrier.CreateLoadCarrierActivity"
             android:exported="true">
 
 
@@ -77,7 +77,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ReviewOpenLoadsCarrier"
+            android:name=".carrier.ReviewOpenLoadsActivity"
             android:exported="true">
 
 
@@ -88,7 +88,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ReviewCarrierRequests"
+            android:name=".carrier.ReviewAcceptedRequestsActivity"
             android:exported="true">
 
 
@@ -99,7 +99,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UpdateCarrierProfileData"
+            android:name=".carrier.ReviewAcceptedLoadsActivity"
             android:exported="true">
 
 
@@ -110,7 +110,29 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UserRegister"
+            android:name=".shipper.ReviewCarrierRequestsActivity"
+            android:exported="true">
+
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".CRUD.UpdateCarrierProfileDataActivity"
+            android:exported="true">
+
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".session.RegisterActivity"
             android:exported="true">
 
 
