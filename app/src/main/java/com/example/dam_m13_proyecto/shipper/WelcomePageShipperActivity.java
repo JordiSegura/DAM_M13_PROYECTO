@@ -29,7 +29,7 @@ public class WelcomePageShipperActivity extends AppCompatActivity implements Nav
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcomepagecarrier);
+        setContentView(R.layout.activity_welcomepageshipper);
 
         //DrawerLayout
         drawer = findViewById(R.id.drawer_layout);

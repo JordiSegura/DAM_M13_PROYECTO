@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -19,6 +21,7 @@ import com.example.dam_m13_proyecto.adapter.ListLoadAdapter;
 import com.example.dam_m13_proyecto.adapter.ListLoadElement;
 import com.example.dam_m13_proyecto.session.SignInActivity;
 
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -78,11 +81,11 @@ public class ReviewOpenLoadsActivity extends AppCompatActivity {
                     String destination_city = resultSet.getString("destination_city");
                     String status = resultSet.getString("status");
 
-                    result += origin_address + ",";
-                    result += origin_city + ",";
-                    result += destination_address + ",";
-                    result += destination_city + ",";
-                    result += status + ",";
+                    result += origin_address + ";";
+                    result += origin_city + ";";
+                    result += destination_address + ";";
+                    result += destination_city + ";";
+                    result += status + ";";
 
 
                 }
@@ -102,13 +105,11 @@ public class ReviewOpenLoadsActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            System.out.println("Llega");
-            String[] values = result.split(",");
+            String[] values = result.split(";");
 
             if (values.length > 0) {
-                //String origin_address,origin_city,destination_address,destination_city,status,color;
-
                 elements = new ArrayList<>();
+
                 for (int i = 0; i < values.length - 4; i += 5) {
                     // Assuming the values array has at least 5 elements for each iteration
                     String value0 = values[i];
@@ -120,41 +121,18 @@ public class ReviewOpenLoadsActivity extends AppCompatActivity {
                     // Create a new ListLoadElement and add it to the list
                     elements.add(new ListLoadElement(value0, value1, value2, value3, value4, "#607d8b"));
                 }
-                //elements.add(new ListLoadElement(values[0],values[1],values[2],values[3],values[4],"#607d8b"));
-
-
                 ListLoadAdapter listAdapter = new ListLoadAdapter(elements,ReviewOpenLoadsActivity.this);
                 RecyclerView recyclerView = findViewById(R.id.listOpenLoadsRecyclerView);
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(ReviewOpenLoadsActivity.this));
                 recyclerView.setAdapter(listAdapter);
             } else {
+
                 Toast.makeText(getApplicationContext(), "User account not found", Toast.LENGTH_SHORT).show();
 
             }
         }
     }
-   /* public void init(){
-        elements = new ArrayList<>();
-        elements.add(new ListElement("Pedro","#607d8b","Barcelona","Activo"));
-        elements.add(new ListElement("Juan","#607d8b","Barcelona","Activo"));
-        elements.add(new ListElement("Pedro","#607d8b","Barcelona","Activo"));
-        elements.add(new ListElement("Juan","#607d8b","Barcelona","Activo"));
-        elements.add(new ListElement("Pedro","#607d8b","Barcelona","Activo"));
-        elements.add(new ListElement("Juan","#607d8b","Barcelona","Activo"));
-        elements.add(new ListElement("Pedro","#607d8b","Barcelona","Activo"));
-        elements.add(new ListElement("Juan","#607d8b","Barcelona","Activo"));
-        elements.add(new ListElement("Pedro","#607d8b","Barcelona","Activo"));
-        elements.add(new ListElement("Juan","#607d8b","Barcelona","Activo"));
-        elements.add(new ListElement("Pedro","#607d8b","Barcelona","Activo"));
-        elements.add(new ListElement("Juan","#607d8b","Barcelona","Activo"));
 
-        ListAdapter listAdapter = new ListAdapter(elements,this);
-        RecyclerView recyclerView = findViewById(R.id.listRecyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(listAdapter);
-
-    }*/
 
 }

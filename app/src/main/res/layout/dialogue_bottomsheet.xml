@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bottomsheet_bg">
+
+<LinearLayout
+    android:id="@+id/layoutLoadId"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    >
+
+    <TextView
+        android:id="@+id/loadIdTextView"
+        android:layout_width="29dp"
+        android:layout_height="38dp"
+        android:layout_marginLeft="8dp"
+        android:elegantTextHeight="true"
+        android:text=" 6 "
+
+        android:textSize="28dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/loadStatusTextView"
+        android:layout_width="327dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="8dp"
+        android:text="loadStatusTextView"
+        android:textSize="16dp"
+        android:elegantTextHeight="true"
+        android:textStyle="bold" />
+
+
+
+</LinearLayout>
+
+    <TextView
+        android:id="@+id/originAdressTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="originAdress"
+        android:textSize="16dp"
+        android:layout_marginLeft="8dp"
+        android:padding="8dp"
+        android:layout_marginTop="8dp"/>
+    <TextView
+        android:id="@+id/originCityTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="originCity"
+        android:textSize="16dp"
+        android:layout_marginLeft="8dp"
+        android:padding="8dp"
+        android:layout_marginTop="8dp"/>
+    <TextView
+        android:id="@+id/destinationAdressTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="destinationAdress"
+        android:textSize="16dp"
+        android:layout_marginLeft="8dp"
+        android:padding="8dp"
+        android:layout_marginTop="8dp"/>
+    <TextView
+        android:id="@+id/destinationCityTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="destinationCity"
+        android:textSize="16dp"
+        android:layout_marginLeft="8dp"
+        android:padding="8dp"
+        android:layout_marginTop="8dp"/>
+    <TextView
+        android:id="@+id/weightTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="weightTextView"
+        android:textSize="16dp"
+        android:layout_marginLeft="8dp"
+        android:padding="8dp"
+        android:layout_marginTop="8dp"/>
+    <TextView
+        android:id="@+id/heightTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="heightTextView"
+        android:textSize="16dp"
+        android:layout_marginLeft="8dp"
+        android:padding="8dp"
+        android:layout_marginTop="8dp"/>
+    <TextView
+        android:id="@+id/widthTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="widthTextView"
+        android:textSize="16dp"
+        android:layout_marginLeft="8dp"
+        android:padding="8dp"
+        android:layout_marginTop="8dp"/>
+    <TextView
+        android:id="@+id/loadRateTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="loadRateTextView"
+        android:textSize="16dp"
+        android:layout_marginLeft="8dp"
+        android:padding="8dp"
+        android:layout_marginTop="8dp"/>
+
+</LinearLayout>

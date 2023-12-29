@@ -1,19 +1,30 @@
 package com.example.dam_m13_proyecto.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
+import android.text.Html;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dam_m13_proyecto.R;
+import com.example.dam_m13_proyecto.carrier.ReviewOpenLoadsActivity;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class ListLoadAdapter extends RecyclerView.Adapter<ListLoadAdapter.ViewHolder> {
@@ -51,12 +62,22 @@ public class ListLoadAdapter extends RecyclerView.Adapter<ListLoadAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView iconImage;
         TextView originAddressTextView, originCityTextView,destinationAddressTextView, destinationCityTextView, status;
+        CardView cardView;
 
          ViewHolder(@NonNull View itemView) {
             super(itemView);
-             System.out.println("VIIIIIIISTAAA " + itemView);
 
-             iconImage = itemView.findViewById(R.id.iconImageView);
+            cardView = itemView.findViewById(R.id.cv2);
+
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.i("CardView cv2 onClick()","Tap detected");
+                    showDialog();
+                }
+            });
+
+            iconImage = itemView.findViewById(R.id.iconImageView);
             originAddressTextView = itemView.findViewById(R.id.originAddressTextView);
             originCityTextView = itemView.findViewById(R.id.originCityTextView);
             destinationAddressTextView = itemView.findViewById(R.id.destinationAddressTextView);
@@ -73,5 +94,24 @@ public class ListLoadAdapter extends RecyclerView.Adapter<ListLoadAdapter.ViewHo
 
 
         }
+    }
+    public void showDialog(){
+        Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialogue_bottomsheet);
+
+        LinearLayout loadIdLayout = dialog.findViewById(R.id.layoutLoadId);
+
+        loadIdLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("LoadIdLayout listener","Tap detected");
+            }
+        });
+        dialog.show();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
     }
 }
